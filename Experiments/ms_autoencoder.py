@@ -47,7 +47,8 @@ class GraphEncoder(nn.Module):
     def kl_div(self, rho):
         first = torch.mean(self.sparse_result(rho, 'lin1'))
         second = torch.mean(self.sparse_result(rho, 'lin2'))
-        return first + second
+        third = torch.mean(self.sparse_result(rho, 'lin3'))
+        return first + second + third
 
     def get_index_by_name(self, name):
         return list(dict(self.layers.named_children()).keys()).index(name)
@@ -56,7 +57,7 @@ class GraphEncoder(nn.Module):
         loss = F.mse_loss(x_hat, x) + beta * self.kl_div(rho)
         return loss
 
-    def get_cluster(self):
-        kmeans = KMeans(n_clusters=self.clusters).fit(self.outputs['lin2'].detach().cpu().numpy())
+    def get_cluster(self, random_state):
+        kmeans = KMeans(n_clusters=self.clusters, init='k-means++', random_state=random_state).fit(self.outputs['lin2'].detach().cpu().numpy())
         self.centroids = kmeans.cluster_centers_
         return kmeans.labels_
