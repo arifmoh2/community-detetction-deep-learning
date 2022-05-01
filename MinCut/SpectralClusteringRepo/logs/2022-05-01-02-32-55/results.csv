@@ -1,0 +1,2 @@
+apply_GNN,ACTIV,es_patience,dataset,method,H_,n_channels,learning_rate,homo_score_mean,homo_score_std,complete_score_mean,complete_score_std,v_score_mean,v_score_std,homo_score_sc,complete_score_sc,v_score_sc
+True,elu,10000,cora,mincut_pool,,16,0.0005,0.39800387335470166,0.0,0.3745464014450879,0.0,0.38591900977536386,0.0,0.021767884649409413,0.17135602328320215,0.03862865233766728
