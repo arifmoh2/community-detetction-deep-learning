@@ -6,7 +6,7 @@ import numpy as np
 def pickle_object(file, save_location):
     """"Pickle and save object to a given location"""
     with open(save_location, 'wb') as handle:
-        pickle.dump(file, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(file, handle, protocol=4)
 
 
 def unpickle_object(file_location: object) -> object:
